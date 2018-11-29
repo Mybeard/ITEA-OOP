@@ -3,16 +3,33 @@
 
 require_once __DIR__ . '/../src/console_helper.php';
 require_once __DIR__ . '/../src/Person.php';
+require_once __DIR__ . '/../src/Exception/PersonAgeValidationException.php';
 
-$john = new Person('John', "john@google.com");
-$john->setAge(25);
-writeln($john->getUsername());
-
-$alisa = new Person('Alisa', 'alisa@gmail.com');
+$alisa = new Person('alisa123', 'alisa@example.com');
 $alisa->setAge(30);
 writeln($alisa->getUsername());
 
-$mark = new Person('Mark', 'mark@gmail.com');
-$mark->setAge(63);
+$john = new Person('john', 'john@example.com');
+$john->setAge(25);
+writeln($john->getUsername());
+
+$mark = new Person('mark1930', 'mark1930@example.com');
+
+try {
+    $mark->setAge(63);
+} catch (PersonAgeValidationException $e) {
+    writeln('[ERROR] ' . $e->getMessage());
+}
+writeln($mark->getAge());
 
 writeln('Max age: ' . Person::getOldest());
+
+writeln($mark);
+
+writeln($mark->username);
+//$mark->undefined;
+
+var_dump(isset($mark->username));
+
+unset($mark->username);
+writeln($mark->getUsername());
