@@ -1,0 +1,18 @@
+#!/usr/bin/env php
+<?php
+
+require_once __DIR__ . '/../src/console_helper.php';
+require_once __DIR__ . '/../src/Person.php';
+
+$john = new Person('John', "john@google.com");
+$john->setAge(25);
+writeln($john->getUsername());
+
+$alisa = new Person('Alisa', 'alisa@gmail.com');
+$alisa->setAge(30);
+writeln($alisa->getUsername());
+
+$mark = new Person('Mark', 'mark@gmail.com');
+$mark->setAge(63);
+
+writeln('Max age: ' . Person::getOldest());
